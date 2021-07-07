@@ -1,33 +1,37 @@
 <!doctype html>
-<html ng-app='myModule'>
+<html ng-app='myApp'>
     <head>
         <script src="scripts/angular.min.js"></script>
         <script src="scripts/script.js"></script>
+        <script src="scripts/filter.js"></script>
+        <link href="css/style.css" rel='stylesheet'>
     </head>
     <body>
         <div ng-controller='myController'>
             <input type='number' step="1" min="0" max="5" ng-model='rowLimit'>
-            Order by: <select ng-model='orderBY'>
+            <input ng-model='searchBy'>
+            <input type="checkbox" ng-model='exactMatch'> Exact match 
+            <!-- Order by: <select ng-model='orderBY'>
                         <option value='name'>Name</option>
                         <option value='dob'>DOB</option>
                         <option value='gender'>Gender</option>
                         <option value='salary'>Salary</option>
-            </select>
+            </select> -->
             <br />
             <br />
             <table border="1" width="100%">
                 <tr>
-                    <td>Name</td>
-                    <td>DOB</td>
-                    <td>Gender</td>
-                    <td>Salary (Num filter)</td>
-                    <td>Salary (Currency filter)</td>
+                    <td ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></td>
+                    <td ng-click="sortData('dob')">DOB <div ng-class="getSortClass('dob')"></div></td>
+                    <td ng-click="sortData('gender')">Gender <div ng-class="getSortClass('gender')"></div></td>
+                    <td ng-click="sortData('salary')">Salary (Num filter) <div ng-class="getSortClass('salary')"></div></td>
+                    <td ng-click="sortData('salary')">Salary (Currency filter) <div ng-class="getSortClass('salary')"></div></td>
                 </tr>
-                <tr ng-repeat="employee in employees | orderBy: orderBY:false | limitTo:rowLimit">
+                <tr ng-repeat="employee in employees | filter:searchBy:exactMatch | orderBy: orderBY:reverseSort | limitTo:rowLimit">
                     <td>{{employee.name | uppercase}}</td>
                     <td>{{employee.dob | date: 'dd/MM/yyyy'}}</td>
                     <td>{{employee.gender | lowercase}}</td>
-                    <td>{{employee.salary | number:1}}</td>
+                    <td>{{employee.salary | salary | number:1}}</td>
                     <td>{{employee.salary | currency:"€":1}}</td>
                 </tr>
             </table>
