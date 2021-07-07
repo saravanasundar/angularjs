@@ -3,13 +3,11 @@
 var myApp = angular
             .module('myModule', [])
             .controller('myController', function ($scope) {
-                var employee = {
-                    'firstName': "David",
-                    "lastName": "Das",
-                    "gender": "Male"
+                var country = {
+                    'name': "India",
+                    "flag": "images/indian flag.png",
                 }
-                $scope.message = 'Angular JS Tutorial';
-                $scope.employee = employee;
+                $scope.country = country;
             });
 
 //creating variable for container
