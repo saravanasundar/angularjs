@@ -6,8 +6,16 @@
     </head>
     <body>
         <div ng-controller='myController'>
-            <input ng-model='message'>
-            <p>{{message}}</p>
+            <ul>
+                <li ng-repeat='country in countries'>
+                    {{$index}} - {{country.name}}
+                    <ul>
+                        <li ng-repeat='city in country.cities'>
+                            {{$parent.$index}}.{{$index}} - {{city}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </body>
 </html>
