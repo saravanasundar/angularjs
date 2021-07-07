@@ -3,15 +3,22 @@
 var myApp = angular
             .module('myModule', [])
             .controller('myController', function ($scope) {
-                var countries = [
+                var technologies = [
                     {
-                        name: "India",
-                        cities: ['Chennai', "Hydredabad", "Bangalore"]
+                        name: "Angular",
+                        like: 0
                     },
                     {
-                        name: "USA",
-                        cities: ['New york', "Texas"]
+                        name: "React",
+                        like: 0
                     }
                 ]
-                $scope.countries = countries;
+                $scope.technologies = technologies;
+                $scope.incLike = function (technology) {
+                    technology.like++;
+                }
+                $scope.decLike = function (technology) {
+                    if(technology.like > 0)
+                        technology.like -= 1;
+                }
             });

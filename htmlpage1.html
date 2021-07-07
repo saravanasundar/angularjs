@@ -6,16 +6,15 @@
     </head>
     <body>
         <div ng-controller='myController'>
-            <ul>
-                <li ng-repeat='country in countries'>
-                    {{$index}} - {{country.name}}
-                    <ul>
-                        <li ng-repeat='city in country.cities'>
-                            {{$parent.$index}}.{{$index}} - {{city}}
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <table>
+                <tr ng-repeat='technology in technologies'>
+                    <td>{{$index}}</td>
+                    <td>{{technology.name}}</td>
+                    <td>{{technology.like}}</td>
+                    <td><button ng-click='incLike(technology)'>Like</td> 
+                    <td><button ng-click='decLike(technology)'>Dislike</td> 
+                </tr>
+            </table>
         </div>
     </body>
 </html>
