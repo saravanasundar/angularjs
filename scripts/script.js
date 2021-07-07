@@ -3,22 +3,15 @@
 var myApp = angular
             .module('myModule', [])
             .controller('myController', function ($scope) {
-                var technologies = [
-                    {
-                        name: "Angular",
-                        like: 0
-                    },
-                    {
-                        name: "React",
-                        like: 0
-                    }
-                ]
-                $scope.technologies = technologies;
-                $scope.incLike = function (technology) {
-                    technology.like++;
-                }
-                $scope.decLike = function (technology) {
-                    if(technology.like > 0)
-                        technology.like -= 1;
-                }
+                var employees = [
+                    {name: 'Ben', dob: new Date('november 23, 1990'), gender: 'male', salary: 55000.78},
+                    {name: 'sara', dob: new Date('may 5, 1977'), gender: 'male', salary: 55000.78},
+                    {name: 'mark', dob: new Date('august 23, 1972'), gender: 'male', salary: 55000.78},
+                    {name: 'pam', dob: new Date('june 4, 1989'), gender: 'male', salary: 55000.78},
+                    {name: 'todd', dob: new Date('july 6, 1945'), gender: 'male', salary: 55000.78}
+                ];
+
+                $scope.employees = employees;
+                $scope.rowLimit = 3;
+                $scope.orderBY = "name";
             });

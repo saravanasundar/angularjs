@@ -6,13 +6,29 @@
     </head>
     <body>
         <div ng-controller='myController'>
-            <table>
-                <tr ng-repeat='technology in technologies'>
-                    <td>{{$index}}</td>
-                    <td>{{technology.name}}</td>
-                    <td>{{technology.like}}</td>
-                    <td><button ng-click='incLike(technology)'>Like</td> 
-                    <td><button ng-click='decLike(technology)'>Dislike</td> 
+            <input type='number' step="1" min="0" max="5" ng-model='rowLimit'>
+            Order by: <select ng-model='orderBY'>
+                        <option value='name'>Name</option>
+                        <option value='dob'>DOB</option>
+                        <option value='gender'>Gender</option>
+                        <option value='salary'>Salary</option>
+            </select>
+            <br />
+            <br />
+            <table border="1" width="100%">
+                <tr>
+                    <td>Name</td>
+                    <td>DOB</td>
+                    <td>Gender</td>
+                    <td>Salary (Num filter)</td>
+                    <td>Salary (Currency filter)</td>
+                </tr>
+                <tr ng-repeat="employee in employees | orderBy: orderBY:false | limitTo:rowLimit">
+                    <td>{{employee.name | uppercase}}</td>
+                    <td>{{employee.dob | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{employee.gender | lowercase}}</td>
+                    <td>{{employee.salary | number:1}}</td>
+                    <td>{{employee.salary | currency:"€":1}}</td>
                 </tr>
             </table>
         </div>
