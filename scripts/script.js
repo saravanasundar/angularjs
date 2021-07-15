@@ -11,6 +11,8 @@ var myApp = angular
                     {name: 'todd', dob: new Date('july 6, 1945'), gender: 'male', salary: 34565.78}
                 ];
 
+                $scope.hideSalary = false;
+
                 $scope.employees = employees;
                 $scope.rowLimit = 5;
                 $scope.orderBY = "name";
